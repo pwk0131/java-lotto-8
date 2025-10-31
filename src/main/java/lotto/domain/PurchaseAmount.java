@@ -28,4 +28,12 @@ public class PurchaseAmount {
             throw new IllegalArgumentException(ValidationMessages.ERROR_AMOUNT_INVALID_UNIT);
         }
     }
+
+    public int getTicketCount() {
+        return amount / TICKET_PRICE;
+    }
+
+    public double calculateProfitRate(long totalPrize) {
+        return (double) totalPrize / this.amount * 100.0;
+    }
 }
