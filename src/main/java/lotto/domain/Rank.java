@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.function.BiPredicate;
 
 public enum Rank {
@@ -33,18 +35,25 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    // OutputView에서 사용할 getter
+    // Statistics에서 DTO 생성을 위해 사용
     public long getPrize() {
         return prize;
     }
 
-    // OutputView에서 사용할 getter
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    // OutputView에서 사용할 getter
     public boolean isBonusRank() {
         return this == SECOND;
+    }
+
+    // DTO 생성을 위해 포맷팅된 상금 문자열을 반환
+    public String getFormattedPrize() {
+        return NumberFormat.getInstance(Locale.KOREA).format(prize);
+    }
+
+    // DTO 생성을 위해 포맷팅된 등수 설명 문자열을 반환
+    public String getDescription() {
+        if (isBonusRank()) {
+            return String.format("%d개 일치, 보너스 볼 일치", matchCount);
+        }
+        return String.format("%d개 일치", matchCount);
     }
 }
