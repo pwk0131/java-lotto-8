@@ -9,6 +9,7 @@ import lotto.Lotto;
 public class Validator {
 
     private static final String COMMA = ",";
+    public static final String ERROR_BONUS_DUPLICATE = ValidationMessages.ERROR_BONUS_DUPLICATE;
 
     private Validator() {
     }
@@ -49,6 +50,10 @@ public class Validator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ValidationMessages.ERROR_WINNING_NUMBERS_INVALID_FORMAT);
         }
+    }
+
+    public static int parseBonusNumber(String input) {
+        return parseNumeric(input);
     }
 
     private static void validateWinningNumbersCount(String[] parts) {
