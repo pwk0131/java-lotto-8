@@ -41,4 +41,19 @@ class PurchaseAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidationMessages.ERROR_AMOUNT_MINIMUM);
     }
+
+    @Test
+    @DisplayName("총 당첨금을 기준으로 수익률을 정확히 계산한다 (요구사항 예시)")
+    void calculateProfitRate_test() {
+        // given
+        PurchaseAmount amount = new PurchaseAmount(8000); // 8000원 투자
+        long totalPrize = 5000; // 5000원 당첨
+
+        // when
+        double profitRate = amount.calculateProfitRate(totalPrize);
+
+        // then
+        // (5000 / 8000) * 100 = 62.5
+        assertThat(profitRate).isEqualTo(62.5);
+    }
 }
