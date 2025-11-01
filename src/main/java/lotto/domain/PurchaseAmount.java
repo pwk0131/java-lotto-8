@@ -34,6 +34,9 @@ public class PurchaseAmount {
     }
 
     public double calculateProfitRate(long totalPrize) {
+        if (this.amount == 0) {
+            return 0.0;
+        }
         return (double) totalPrize / this.amount * 100.0;
     }
 }
