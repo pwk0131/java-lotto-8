@@ -16,6 +16,11 @@ public class ValidationMessages {
     public static final String ERROR_LOTTO_INVALID_SIZE = ERROR_PREFIX + "로또 번호는 6개여야 합니다.";
     public static final String ERROR_LOTTO_DUPLICATE_NUMBERS = ERROR_PREFIX + "로또 번호에 중복된 숫자가 있습니다.";
 
+    // 당첨 번호 입력 검증용
+    public static final String ERROR_WINNING_NUMBERS_INVALID_FORMAT = ERROR_PREFIX + "당첨 번호는 쉼표(,)로 구분된 숫자 6개여야 합니다.";
+    public static final String ERROR_WINNING_NUMBERS_INVALID_COUNT = ERROR_PREFIX + "당첨 번호는 6개여야 합니다.";
+    public static final String ERROR_WINNING_NUMBERS_DUPLICATE = ERROR_PREFIX + "당첨 번호에 중복된 숫자가 있습니다.";
+
     private ValidationMessages() {
     }
 }
