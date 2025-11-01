@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.domain.LottoNumber;
 import lotto.validation.ValidationMessages;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,5 +49,19 @@ class LottoTest {
 
         Lotto lotto = new Lotto(unsortedNumbers);
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
+
+    @DisplayName("특정 번호를 포함하고 있는지 정확히 반환한다 (containsNumber)")
+    @Test
+    void containsNumber_test() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(6);
+        LottoNumber missNumber = new LottoNumber(7);
+
+        boolean hasBonus = lotto.containsNumber(bonusNumber);
+        boolean hasMiss = lotto.containsNumber(missNumber);
+
+        assertThat(hasBonus).isTrue();
+        assertThat(hasMiss).isFalse();
     }
 }

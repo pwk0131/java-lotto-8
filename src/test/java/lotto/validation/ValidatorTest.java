@@ -69,4 +69,21 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ValidationMessages.ERROR_WINNING_NUMBERS_INVALID_FORMAT);
     }
+
+    @Test
+    @DisplayName("정상적인 보너스 번호 문자열을 int로 변환한다")
+    void parseBonusNumber_success() {
+        String input = "7";
+        int number = Validator.parseBonusNumber(input);
+        assertThat(number).isEqualTo(7);
+    }
+
+    @Test
+    @DisplayName("숫자가 아닌 보너스 번호 입력 시 예외를 발생시킨다")
+    void parseBonusNumber_fail_not_numeric() {
+        String input = "7a";
+        assertThatThrownBy(() -> Validator.parseBonusNumber(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ValidationMessages.ERROR_INPUT_NOT_NUMERIC);
+    }
 }
