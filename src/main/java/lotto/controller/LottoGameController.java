@@ -2,7 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;

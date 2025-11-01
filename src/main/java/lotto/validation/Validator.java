@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class Validator {
 
