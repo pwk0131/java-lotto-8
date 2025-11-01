@@ -8,6 +8,7 @@ import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Statistics;
 import lotto.domain.WinningLotto;
+import lotto.dto.StatisticsReportDTO;
 import lotto.service.LottoGenerator;
 import lotto.validation.Validator;
 import lotto.view.InputView;
@@ -117,13 +118,11 @@ public class LottoGameController {
     }
 
     private void showResults(Lottos lottos, WinningLotto winningLotto, PurchaseAmount purchaseAmount) {
+        // Statistics가 스스로 리포트를 생성하도록 "시킴"
         Statistics statistics = lottos.calculateStatistics(winningLotto);
-        long totalPrize = statistics.calculateTotalPrize();
-        double profitRate = purchaseAmount.calculateProfitRate(totalPrize);
+        StatisticsReportDTO report = statistics.generateReport(purchaseAmount);
 
-        outputView.printStatisticsHeader();
-        outputView.printStatistics(statistics);
-        outputView.printProfitRate(profitRate);
+        // View는 전달받은 DTO를 "출력만" 함
+        outputView.printStatisticsReport(report);
     }
-
 }
