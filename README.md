@@ -51,13 +51,13 @@
 ## **클린코드 확인 사항**
 
 - [X] 자바 코드 컨벤션 준수
-- [ ] indent(들여쓰기) 1단계 유지 (메서드 분리)
+- [X] indent(들여쓰기) 1단계 유지 (메서드 분리)
 - [X] else 예약어 쓰지 않기 (if-return, Enum, Predicate 활용)
-- [ ] 모든 원시값과 문자열 포장 (e.g., PurchaseAmount, LottoNumber)
+- [X] 모든 원시값과 문자열 포장 (e.g., PurchaseAmount, LottoNumber)
 - [X] 콜렉션에 대해 일급 콜렉션 적용 (e.g., Lottos, Statistics)
-- [ ] 3개 이하의 인스턴스 변수 사용 (모든 클래스 준수)
-- [ ] getter/setter 금지,DTO는 허용.
+- [X] 3개 이하의 인스턴스 변수 사용 (모든 클래스 준수)
+- [X] getter/setter 금지,DTO는 허용.
 - [X] 메소드 인자 수 제한 (4개 미만)
-- [ ] 코드 한 줄에 점(.) 하나만 허용 (도메인 객체 내부 제외)
+- [X] 코드 한 줄에 점(.) 하나만 허용
 - [X] 메소드가 한가지 일만 담당
 - [X] 클래스를 작게 유지
