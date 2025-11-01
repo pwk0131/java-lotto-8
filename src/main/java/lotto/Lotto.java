@@ -51,6 +51,11 @@ public class Lotto {
         }
     }
 
+    // 특정 로또 번호를 포함하고 있는지 확인
+    public boolean containsNumber(LottoNumber number) {
+        return this.numbers.contains(number.getValue());
+    }
+
     @Override
     public String toString() {
         return numbers.toString();
