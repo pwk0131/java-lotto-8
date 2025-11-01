@@ -28,6 +28,9 @@ public class LottoGameController {
 
         // 2.로또 구매 및 출력
         buyLottos(purchaseAmount);
+
+        // 3. 당첨 번호 입력
+        Lotto winningNumbers = readWinningNumbersWithRetry();
     }
 
     // 구입 금액 입력
@@ -46,7 +49,7 @@ public class LottoGameController {
         return new PurchaseAmount(amount);
     }
 
-    private void buyLottos(PurchaseAmount purchaseAmount) {
+    private Lottos buyLottos(PurchaseAmount purchaseAmount) {
         int count = purchaseAmount.getTicketCount();
         outputView.printTicketCount(count);
 
@@ -57,6 +60,23 @@ public class LottoGameController {
 
         Lottos lottos = new Lottos(purchased);
         outputView.printLottos(lottos);
+
+        return lottos;
+    }
+
+    private Lotto readWinningNumbersWithRetry() {
+        try {
+            return tryReadWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printError(e);
+            return readWinningNumbersWithRetry();
+        }
+    }
+
+    private Lotto tryReadWinningNumbers() {
+        String input = inputView.readWinningNumbers();
+        List<Integer> numbers = Validator.parseWinningNumbers(input);
+        return new Lotto(numbers); // new Lotto()가 1~45 범위 검증을 수행
     }
 
 }
