@@ -51,7 +51,7 @@ class LottoTest {
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
-    @DisplayName("특정 번호를 포함하고 있는지 정확히 반환한다 (containsNumber)")
+    @DisplayName("특정 번호를 포함하고 있는지 정확히 반환한다.")
     @Test
     void containsNumber_test() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -63,5 +63,22 @@ class LottoTest {
 
         assertThat(hasBonus).isTrue();
         assertThat(hasMiss).isFalse();
+    }
+
+    @DisplayName("두 로또 번호의 일치 개수를 정확히 반환한다.")
+    @Test
+    void countMatchingNumbers_test() {
+        // given
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto lotto3 = new Lotto(List.of(10, 11, 12, 13, 14, 15));
+
+        // when
+        int matchCount3 = lotto1.countMatchingNumbers(lotto2);
+        int matchCount0 = lotto1.countMatchingNumbers(lotto3);
+
+        // then
+        assertThat(matchCount3).isEqualTo(3);
+        assertThat(matchCount0).isEqualTo(0);
     }
 }
