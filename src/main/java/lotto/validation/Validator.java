@@ -16,7 +16,8 @@ public class Validator {
 
     public static int parseAmount(String input) {
         try {
-            return Integer.parseInt(input.trim());
+            String trimmedInput = input.trim();
+            return Integer.parseInt(trimmedInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ValidationMessages.ERROR_INPUT_NOT_NUMERIC);
         }
@@ -35,7 +36,8 @@ public class Validator {
 
     private static int parseNumeric(String input) {
         try {
-            return Integer.parseInt(input.trim());
+            String trimmedInput = input.trim();
+            return Integer.parseInt(trimmedInput);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ValidationMessages.ERROR_INPUT_NOT_NUMERIC);
         }
