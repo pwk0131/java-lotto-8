@@ -6,6 +6,7 @@ import lotto.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.Statistics;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoGenerator;
 import lotto.validation.Validator;
@@ -29,7 +30,7 @@ public class LottoGameController {
         PurchaseAmount purchaseAmount = readPurchaseAmountWithRetry();
 
         // 2.로또 구매 및 출력
-        buyLottos(purchaseAmount);
+        Lottos lottos = buyLottos(purchaseAmount);
 
         // 3. 당첨 번호 입력
         Lotto winningNumbers = readWinningNumbersWithRetry();
@@ -39,6 +40,9 @@ public class LottoGameController {
 
         // 5. 당첨 로또 생성
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+
+        // 6. 결과 계산 및 출력
+        showResults(lottos, winningLotto, purchaseAmount);
     }
 
     // 구입 금액 입력
@@ -112,5 +116,14 @@ public class LottoGameController {
         }
     }
 
+    private void showResults(Lottos lottos, WinningLotto winningLotto, PurchaseAmount purchaseAmount) {
+        Statistics statistics = lottos.calculateStatistics(winningLotto);
+        long totalPrize = statistics.calculateTotalPrize();
+        double profitRate = purchaseAmount.calculateProfitRate(totalPrize);
+
+        outputView.printStatisticsHeader();
+        outputView.printStatistics(statistics);
+        outputView.printProfitRate(profitRate);
+    }
 
 }
