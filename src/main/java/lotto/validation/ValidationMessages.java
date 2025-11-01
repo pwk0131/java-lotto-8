@@ -21,6 +21,9 @@ public class ValidationMessages {
     public static final String ERROR_WINNING_NUMBERS_INVALID_COUNT = ERROR_PREFIX + "당첨 번호는 6개여야 합니다.";
     public static final String ERROR_WINNING_NUMBERS_DUPLICATE = ERROR_PREFIX + "당첨 번호에 중복된 숫자가 있습니다.";
 
+    // 보너스 번호
+    public static final String ERROR_BONUS_DUPLICATE = ERROR_PREFIX + "보너스 번호는 당첨 번호와 중복될 수 없습니다.";
+
     private ValidationMessages() {
     }
 }
