@@ -8,13 +8,14 @@ import lotto.validation.ValidationMessages;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
 
         this.numbers = numbers.stream()
                 .sorted()
+                .map(LottoNumber::new) // LottoNumber가 개별 숫자 범위 검증
                 .toList();
     }
 
@@ -22,7 +23,6 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicates(numbers);
-        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -38,21 +38,10 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
-        for (int number : numbers) {
-            validateNumberRange(number);
-        }
-    }
-
-    private void validateNumberRange(int number) {
-        if (number < LottoNumber.MIN_NUMBER || number > LottoNumber.MAX_NUMBER) {
-            throw new IllegalArgumentException(ValidationMessages.ERROR_LOTTO_NUMBER_OUT_OF_RANGE);
-        }
-    }
 
     // 특정 로또 번호를 포함하고 있는지 확인
     public boolean containsNumber(LottoNumber number) {
-        return this.numbers.contains(number.getValue());
+        return this.numbers.contains(number);
     }
 
     public int countMatchingNumbers(Lotto other) {
@@ -64,7 +53,10 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> values = numbers.stream()
+                .map(LottoNumber::getValue)
+                .toList();
+        return values.toString();
     }
 
 }
