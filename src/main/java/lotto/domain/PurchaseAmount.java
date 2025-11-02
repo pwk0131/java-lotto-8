@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.service.LottoGenerator;
 import lotto.validation.ValidationMessages;
+import lotto.view.OutputView;
 
 public class PurchaseAmount {
     public static final int TICKET_PRICE = 1_000;
@@ -29,8 +33,21 @@ public class PurchaseAmount {
         }
     }
 
-    public int getTicketCount() {
+    // 외부 도메인에서의 접근 차단
+    int getTicketCount() {
         return amount / TICKET_PRICE;
+    }
+
+    // 로또 생성 및 개수 출력을 담당 (Tell, Don't Ask)
+    public Lottos buyLottos(LottoGenerator lottoGenerator, OutputView outputView) {
+        int count = getTicketCount(); // 내부(private/package-private) 호출은 OK
+        outputView.printTicketCount(count); // View에 출력을 "명령"
+
+        List<Lotto> purchased = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            purchased.add(lottoGenerator.generate());
+        }
+        return new Lottos(purchased);
     }
 
     public double calculateProfitRate(long totalPrize) {
