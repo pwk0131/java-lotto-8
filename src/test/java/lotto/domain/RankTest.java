@@ -32,11 +32,11 @@ class RankTest {
     @Test
     @DisplayName("각 등수의 상금이 요구사항과 일치해야 한다")
     void rank_HasCorrectPrize() {
-        assertThat(Rank.FIRST.getPrize()).isEqualTo(2_000_000_000L);
-        assertThat(Rank.SECOND.getPrize()).isEqualTo(30_000_000L);
-        assertThat(Rank.THIRD.getPrize()).isEqualTo(1_500_000L);
-        assertThat(Rank.FOURTH.getPrize()).isEqualTo(50_000L);
-        assertThat(Rank.FIFTH.getPrize()).isEqualTo(5_000L);
-        assertThat(Rank.MISS.getPrize()).isEqualTo(0L);
+        assertThat(Rank.FIRST.calculatePrizeForCount(1)).isEqualTo(2_000_000_000L);
+        assertThat(Rank.SECOND.calculatePrizeForCount(1)).isEqualTo(30_000_000L);
+        assertThat(Rank.THIRD.calculatePrizeForCount(1)).isEqualTo(1_500_000L);
+        assertThat(Rank.FOURTH.calculatePrizeForCount(1)).isEqualTo(50_000L);
+        assertThat(Rank.FIFTH.calculatePrizeForCount(1)).isEqualTo(5_000L);
+        assertThat(Rank.MISS.calculatePrizeForCount(1)).isEqualTo(0L);
     }
 }

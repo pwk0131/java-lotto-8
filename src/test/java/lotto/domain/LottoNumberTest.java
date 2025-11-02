@@ -16,7 +16,7 @@ class LottoNumberTest {
     @DisplayName("1~45 범위의 숫자로 LottoNumber를 생성할 수 있다")
     void create_lotto_number_success() {
         LottoNumber number = new LottoNumber(45);
-        assertThat(number.getValue()).isEqualTo(45);
+        assertThat(number.toString()).isEqualTo("45");
     }
 
     @ParameterizedTest
