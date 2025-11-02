@@ -14,12 +14,13 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
+        GameViews gameViews = new GameViews(inputView, outputView);
+
         LottoGameController lottoGameController = new LottoGameController(
-                inputView,
-                outputView,
+                gameViews,
                 lottoGenerator
         );
-        lottoGameController.run();
 
+        lottoGameController.run();
     }
 }
