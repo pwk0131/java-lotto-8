@@ -20,11 +20,6 @@ public class LottoNumber {
         }
     }
 
-    // 'getter' 대신 'getValue'를 사용 (의도를 명확히).
-    public int getValue() {
-        return value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -40,6 +35,11 @@ public class LottoNumber {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
     }
 
 }
