@@ -15,11 +15,11 @@ public class Statistics {
 
     public long calculateTotalPrize() {
         return results.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().calculatePrizeForCount(entry.getValue()))
                 .sum();
     }
 
-    public int getCount(Rank rank) {
+    int getCount(Rank rank) {
         return results.getOrDefault(rank, 0);
     }
 
@@ -37,11 +37,10 @@ public class Statistics {
         return new StatisticsReportDTO(rankResults, profitRate);
     }
 
-    //DTO의 구성 요소인 RankResultDTO를 생성
+    // DTO의 구성 요소인 RankResultDTO를 생성
     private RankResultDTO createRankResultDTO(Rank rank) {
-        String description = rank.getDescription();
-        String prize = rank.getFormattedPrize();
         int count = getCount(rank);
-        return new RankResultDTO(description, prize, count);
+        // Rank의 getter를 호출하는 대신 DTO 생성을 위임
+        return rank.toRankResultDTO(count);
     }
 }
