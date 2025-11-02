@@ -53,10 +53,7 @@ public class Lotto {
 
     @Override
     public String toString() {
-        List<Integer> values = numbers.stream()
-                .map(LottoNumber::getValue)
-                .toList();
-        return values.toString();
+        return numbers.toString();
     }
 
 }
